@@ -1,10 +1,35 @@
-# Beartrap State Machine
+# State Machine Overview
 
-## Overview
+A state machine is a design pattern used to manage the state of an object. It allows an object to change its behavior when its state changes. This pattern is particularly useful in game development for managing complex state transitions and behaviors.
 
-This project implements a state machine for a beartrap in Unity. The beartrap can be in one of two states: active or inactive. The state machine handles the transitions between these states and the behavior of the beartrap in each state.
+## Working of the State Machine
 
-## Components
+The state machine consists of the following components:
+- **StateMachine**: The core component that manages the current state and handles state transitions.
+- **IState**: An interface that defines the methods each state must implement.
+- **BaseState**: An abstract class that implements the `IState` interface and provides a base for specific states.
+- **ReusableData**: A class that holds data that can be reused across different states.
+
+### StateMachine.cs
+
+This script manages the state transitions and the current state of the object. It contains methods to initialize the state machine, handle input, update the state, and change the state.
+
+### IState.cs
+
+This interface defines the methods that each state must implement:
+- **Enter**: Called when the state is entered.
+- **Exit**: Called when the state is exited.
+- **Update**: Called every frame to update the state.
+- **PhysicsUpdate**: Called every physics update.
+- **HandleInput**: Handles input for the state.
+
+### BaseState.cs
+
+This abstract class provides a base implementation for the `IState` interface. It contains a reference to the state machine and provides a constructor to initialize it.
+
+## Example: Beartrap
+
+The beartrap is an example of an object that uses the state machine to manage its states. The beartrap can be in one of two states: active or inactive. The state machine handles the transitions between these states and the behavior of the beartrap in each state.
 
 ### Beartrap.cs
 
@@ -41,19 +66,6 @@ This script defines the behavior of the beartrap when it is active. Key methods 
 This script defines the behavior of the beartrap when it is inactive. Key methods include:
 - **Enter**: Sets up the state, including resetting the elapsed time and setting the sprite.
 - **Update**: Checks if the cooldown time has elapsed and transitions to the active state if it has.
-
-### IState.cs
-
-This interface defines the methods that each state must implement:
-- **Enter**: Called when the state is entered.
-- **Exit**: Called when the state is exited.
-- **Update**: Called every frame to update the state.
-- **PhysicsUpdate**: Called every physics update.
-- **HandleInput**: Handles input for the state.
-
-## State Transitions
-
-The beartrap starts in the active state. When a collision is detected, it deals damage and transitions to the inactive state. After the cooldown time has elapsed, it transitions back to the active state.
 
 ## Bibliographic References
 

@@ -185,4 +185,4 @@ stateMachine.ChangeState(stateMachine.ActiveState);
 
 [Genshin Impact Movement in Unity | Full Video - Movement System](https://youtu.be/kluTqsSUyN0)
 
-
+[A* Path Finding](https://www.youtube.com/watch?v=-L-WgKMFuhE&list=PLFt_AvWsXl0cq5Umv3pMC9SPnKjfp9eGW&index=1)

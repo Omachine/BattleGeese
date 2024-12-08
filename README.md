@@ -74,9 +74,9 @@ Project made by [Gonçalo Moreira](https://github.com/Omachine).
 ## Working of the State Machine
 
 The state machine consists of the following components:
-- **StateMachine**: The core component that manages the current state and handles state transitions.
-- **IState**: An interface that defines the methods each state must implement.
-- **BaseState**: An abstract class that implements the `IState` interface and provides a base for specific states.
+- 'StateMachine': The core component that manages the current state and handles state transitions.
+- 'IState': An interface that defines the methods each state must implement.
+- 'BaseState': An abstract class that implements the `IState` interface and provides a base for specific states.
 
 ### StateMachine.cs
 

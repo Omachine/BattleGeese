@@ -1,3 +1,55 @@
+# A\* Path Finding
+```
+🚩⬛⬛⬛⬜⬜🟥
+⬜⬜🟥🟥⬛⬜🟥
+⬜⬜⬜🟥⬜⬛🏁
+🟥🟥⬜⬜⬜🟥🟥
+```
+Project done by [Francisco Oliveira](https://github.com/FranciscoOliveira7).
+
+In this project I created a pathfinding system for the Battle Geese game.
+Since the game has no height changes applied to it and it's using a free movement system, I made a 2 dimensional, matrix shaped grid for a pathfinding system.
+
+# :open_file_folder: Scripts
+```
+📂pathfinding/
+└📄Unit.cs
+└📄PathFinding.cs
+└📄PathGrid.cs
+└📄Heap.cs
+└📄PathNode.cs
+└📄Line.cs
+└📄Path.cs
+└📄PathRequestManager.cs
+```
+# :gear: Functionality
+
+## Path Node
+
+The pathfinding grid is a matrix of nodes that contains:
+- If it's walkable
+- World position
+- G, H and F costs
+- Their parent
+- x and y coords from the grid
+
+## Path Grid
+Assignable values:
+- `LayerMask unwalkableMask;`
+- `Vector2 gridWorldSize;`
+- `float nodeRadius;`
+- `float unwalkablePadding;` (used to make sure enemies don't get stuck by walking in the corners of the obstacles)
+
+Sets the grid x and y count to by dividing the world size by the node diameter.
+```cs
+void Start() {...}```
+
+First it creates a grid with the x and y count defined on `Start()`.
+Does a sphere collision check with `nodeRadius` + `unwalkablePadding` on each world position and creates a `PathNode` with the unwalkable flag if so.
+```cs
+void CreateGrid() {...}```
+```
+
 # State Machine Overview
 
 A state machine is a design pattern used to manage the state of an object. It allows an object to change its behavior when its state changes. This pattern is particularly useful in game development for managing complex state transitions and behaviors.

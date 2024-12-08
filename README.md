@@ -54,7 +54,7 @@ Does a sphere collision check with `nodeRadius` + `unwalkablePadding` on each wo
 void CreateGrid() {...}
 ```
 </details>
-
+<details>
 # State Machine Overview
 
 Project made by [Gonçalo Moreira](https://github.com/Omachine).
@@ -163,7 +163,7 @@ This script defines the behavior of the beartrap when it is inactive. Key method
 ```cs
 stateMachine.ChangeState(stateMachine.ActiveState);
 ```
-
+</details>
 ## Bibliographic References
 
 [Genshin Impact Movement in Unity | Full Video - Movement System](https://youtu.be/kluTqsSUyN0)

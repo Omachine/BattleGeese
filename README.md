@@ -164,7 +164,7 @@ This script defines the behavior of the beartrap when it is inactive. Key method
 stateMachine.ChangeState(stateMachine.ActiveState);
 ```
 </details>
-## Bibliographic References
+##Bibliographic References
 
 [Genshin Impact Movement in Unity | Full Video - Movement System](https://youtu.be/kluTqsSUyN0)
 

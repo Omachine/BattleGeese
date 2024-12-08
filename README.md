@@ -164,6 +164,6 @@ stateMachine.ChangeState(stateMachine.ActiveState);
 
 ## Bibliographic References
 
-[Genshin Impact Movement in Unity | Full Video - Movement System]([https://github.com/FranciscoOliveira7](https://youtu.be/kluTqsSUyN0))
+[Genshin Impact Movement in Unity | Full Video - Movement System]([https://youtu.be/kluTqsSUyN0])
 
 

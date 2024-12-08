@@ -42,17 +42,34 @@ Assignable values:
 
 Sets the grid x and y count to by dividing the world size by the node diameter.
 ```cs
-void Start() {...}```
+void Start() {...}
+```
 
 First it creates a grid with the x and y count defined on `Start()`.
 Does a sphere collision check with `nodeRadius` + `unwalkablePadding` on each world position and creates a `PathNode` with the unwalkable flag if so.
+
 ```cs
-void CreateGrid() {...}```
+void CreateGrid() {...}
 ```
+
 
 # State Machine Overview
 
-A state machine is a design pattern used to manage the state of an object. It allows an object to change its behavior when its state changes. This pattern is particularly useful in game development for managing complex state transitions and behaviors.
+Project made by [Gonçalo Moreira](https://github.com/Omachine).
+
+  For this project the use of the State machine was made for a straight forward aproach to objects, than if they were holding their behaviour in a unorganized file.
+  Can be used in objects like traps where they worked in a sequence of states or change depending on the enviroment.
+
+# :open_file_folder: Scripts
+```
+📂StateMahine/
+└📄BeartrapBaseState.cs
+└📄IState.cs
+└📄StateMachine.cs
+📂Beartrap/
+└📄BeartrapStateMachine.cs
+└📄Beartrap.cs
+```
 
 ## Working of the State Machine
 
@@ -60,11 +77,14 @@ The state machine consists of the following components:
 - **StateMachine**: The core component that manages the current state and handles state transitions.
 - **IState**: An interface that defines the methods each state must implement.
 - **BaseState**: An abstract class that implements the `IState` interface and provides a base for specific states.
-- **ReusableData**: A class that holds data that can be reused across different states.
 
 ### StateMachine.cs
 
-This script manages the state transitions and the current state of the object. It contains methods to initialize the state machine, handle input, update the state, and change the state.
+This script manages the state transitions and the current state of the object. It contains methods to:
+- initialize the state machine
+- handle input
+- update the state
+- change the state.
 
 ### IState.cs
 

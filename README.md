@@ -67,6 +67,7 @@ void CreateGrid() {...}
 
 
 <details>
+  <summary>State Machine</summary>
 # State Machine Overview
 
 Project made by [Gonçalo Moreira](https://github.com/Omachine).

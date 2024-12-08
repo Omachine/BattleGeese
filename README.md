@@ -1,5 +1,6 @@
 <details>
   <summary>A*</summary>
+  
 # A\* Path Finding
 ```
 🚩⬛⬛⬛⬜⬜🟥
@@ -53,6 +54,7 @@ Does a sphere collision check with `nodeRadius` + `unwalkablePadding` on each wo
 ```cs
 void CreateGrid() {...}
 ```
+
 </details>
 
 
@@ -68,6 +70,7 @@ void CreateGrid() {...}
 
 <details>
   <summary>State Machine</summary>
+  
 # State Machine Overview
 
 Project made by [Gonçalo Moreira](https://github.com/Omachine).
@@ -177,6 +180,7 @@ This script defines the behavior of the beartrap when it is inactive. Key method
 stateMachine.ChangeState(stateMachine.ActiveState);
 ```
 </details>
+
 ## Bibliographic References
 
 [Genshin Impact Movement in Unity | Full Video - Movement System](https://youtu.be/kluTqsSUyN0)

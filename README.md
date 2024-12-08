@@ -57,7 +57,7 @@ void CreateGrid() {...}
 
 Project made by [Gonçalo Moreira](https://github.com/Omachine).
 
-  For this project the use of the State machine was made for a straight forward aproach to objects, than if they were holding their behaviour in a unorganized file.
+  For this project the use of the State machine was made for a straight forward approach, than if they were holding their behaviour in a unorganized file.
   Can be used in objects like traps where they worked in a sequence of states or change depending on the enviroment.
 
 # :open_file_folder: Scripts

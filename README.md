@@ -1,4 +1,4 @@
-<A*>
+<details>
   
 # A\* Path Finding
 ```
@@ -53,7 +53,19 @@ Does a sphere collision check with `nodeRadius` + `unwalkablePadding` on each wo
 ```cs
 void CreateGrid() {...}
 ```
-</A*>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
 <details>
 # State Machine Overview
 

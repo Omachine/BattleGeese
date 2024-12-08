@@ -1,5 +1,5 @@
 <details>
-  
+  <summary>A*</summary>
 # A\* Path Finding
 ```
 🚩⬛⬛⬛⬜⬜🟥

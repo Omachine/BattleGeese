@@ -1,3 +1,13 @@
+# Battle Geese Game
+## Game Scene Order
+MainMenuScene -> Comic Beginning -> Lobby -> Level_1 -> Level_2 -> Level_3 -> Ending Comic
+
+## How the game plays out
+The player goes through the levels aquiring weapons to fend for themselves and complete the game
+## GDD of the game
+[Alpha GDD.pdf](https://github.com/user-attachments/files/18069203/Alpha.GDD.pdf)
+
+## AI
 <details>
   <summary>A*</summary>
   

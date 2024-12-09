@@ -233,7 +233,7 @@ Each enemy has a Tree associated with it, with Sequences and Selectors, that coo
 
 ### Tree
 
-The Tree is the basis, it contains basic information that is to be shared by diffent tasks, like the enemy's position or health.
+The Tree is the basis, it contains basic information that is to be shared by different tasks, like the enemy's position or health.
 It starts with a root node, and then branches to composite/leaf nodes. The leaf nodes do the actions, like attacking and walking. The composite nodes are all that's between the leaves and the root, tasked with choosing the correct leaf to process.
 
   Tree.cs:

@@ -208,7 +208,7 @@ stateMachine.ChangeState(stateMachine.ActiveState);
 Project made by [José Ferreira](https://github.com/Berna-97).
 
 The Behaviour Tree was made out of the necessity of having dynamic and interesting enemies. Enemies are similar, so they re-use the same behaviours, making this a more pratical method than a state machine.
-It is made out of Nodes, that switch in the Tree through Sequences and Selectors, and each enemy has its own Tree.
+It is made out of Nodes, which are selected in the Tree through Sequences and Selectors, and each enemy has its own Tree.
 
 # :open_file_folder: Scripts
 ```
@@ -229,7 +229,61 @@ It is made out of Nodes, that switch in the Tree through Sequences and Selectors
 
 ## The way it works
 
-Each enemy has a Tree associated with it, with Sequences and Selectors.
+Each enemy has a Tree associated with it, with Sequences and Selectors, that coordinate Tasks.
+
+### Tree
+
+The Tree is the basis, it contains basic information that is to be shared by diffent tasks, like the enemy's position or health.
+It starts with a root node, and then branches to composite/leaf nodes. The leaf nodes do the actions, like attacking and walking. The composite nodes are all that's between the leaves and the root, tasked with choosing the correct leaf to process.
+
+  Tree.cs:
+```
+        protected Node _root;
+
+        protected void Start()
+        {
+            _root = SetupTree();
+        }
+
+        private void Update()
+        {
+            if (_root != null)
+            {
+                _root.Evaluate();
+            }
+        }
+
+        protected abstract Node SetupTree();
+```
+
+  AppleBT.cs (example of a behavior tree in practice)
+```
+    protected override Node SetupTree()
+    {
+        unit = GetComponent<Unit>();
+        unit.target = GameObject.FindGameObjectWithTag("Player").transform;
+        _animator = transform.Find("Sprite").GetComponent<Animator>();
+        EnemyHealthComponent healthComponent = GetComponent<EnemyHealthComponent>();
+        Flip = new EnemySpriteFlip(transform);
+
+        Node root = new Selector(new List<Node>
+        {
+                new Sequence(new List<Node>
+                {
+                    new WaitTask(attackCooldown),
+                    new Sequence(new List<Node>{
+                        new TaskCheckDistance(unit, attackRange, CheckType.inside),
+                        new CheckTargetInSight(unit),
+                        new TaskCheckDistance(unit, 1.5f, CheckType.outside),
+                        new DashAttackTask(unit, 0.5f, 1f, dashSpeed, _animator),
+                    }),
+                })
+          //  ),
+        });
+        
+        return root;
+    }
+```
 
 ### Sequence
 
@@ -238,7 +292,8 @@ Sequences perform tasks in order, with each one returning either "Success", "Fai
   - If "Success" is returned, the for cicle continues, and the next task is processed.
   - If "Running" is returned, the task is processed again.
   - If every task succeds, the sequence returns "Success"
-    
+
+    Sequence.cs:
 ```
             for (int i = index; i < children.Count; i++)
             {
@@ -270,6 +325,7 @@ Selectors are similar to Sequences, but with a few differences:
   - "Success" stops the selector.
   - If all tasks fail, the selector returns "Failure".
 
+  Selector.cs:
  ```
             for (int i = index; i < children.Count; i++)
             {
@@ -293,6 +349,72 @@ Selectors are similar to Sequences, but with a few differences:
             return state;
 ```
 
+### Node
+
+Nodes are the building blocks of the tree. Tasks, selectors, sequences, and even the root are all nodes.
+Nodes are attached in a child-parent fashion, for easy access.
+
+  Node.cs:
+```
+    protected NodeState state;
+
+    public Node parent;
+    protected List<Node> children = new List<Node>();
+
+    private Dictionary<string, object> _dataContext = new Dictionary<string, object>();
+
+    public Node()
+    {
+        parent = null;
+    }
+    public Node(List<Node> children)
+    {
+        foreach (Node child in children)
+            _Attach(child);
+    }
+
+    private void _Attach(Node node)
+    {
+        node.parent = this;
+        children.Add(node);
+    }
+
+    public virtual NodeState Evaluate() => NodeState.FAILURE;
+```
+
+### Task
+
+Tasks are the leaf nodes in this behaviour tree. They contain the logic to each action in the enemy, including walking, checking range, attacking adn dashing.
+
+
+StartFollowingTargetTask.cs (example of a simple task):
+
+```
+public class StartFollowingTargetTask : Node
+{
+    private Transform _target;
+    private Unit _unit;
+    private Animator _animator;
+
+    public StartFollowingTargetTask(Transform target, Unit unit, Animator animator)
+    {
+        _target = target;
+        _unit = unit;
+        _animator = animator;
+    }
+
+    public override NodeState Evaluate()
+    {
+        _animator.SetBool("isWalking", true);
+        _unit.target = _target;
+        _unit.isStopped = false;
+        
+        state = NodeState.SUCCESS;
+        return state;
+    }
+}
+```
+
 </details>
 
 ## Bibliographic References
@@ -300,3 +422,5 @@ Selectors are similar to Sequences, but with a few differences:
 [Genshin Impact Movement in Unity | Full Video - Movement System](https://youtu.be/kluTqsSUyN0)
 
 [A* Path Finding](https://www.youtube.com/watch?v=-L-WgKMFuhE&list=PLFt_AvWsXl0cq5Umv3pMC9SPnKjfp9eGW&index=1)
+
+[AI Behaviour Trees in Unity](https://www.youtube.com/watch?v=aR6wt5BlE-E)

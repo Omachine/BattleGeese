@@ -215,7 +215,7 @@ stateMachine.ChangeState(stateMachine.ActiveState);
 
   # Behaviour Tree
 
-Project made by [José Ferreira](https://github.com/Berna-97).
+Project made by [José Ferreira Nº25958](https://github.com/Berna-97).
 
 The Behaviour Tree was made out of the necessity of having dynamic and interesting enemies. Enemies are similar, so they re-use the same behaviours, making this a more pratical method than a state machine.
 It is made out of Nodes, which are selected in the Tree through Sequences and Selectors, and each enemy has its own Tree.

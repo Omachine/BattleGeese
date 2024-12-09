@@ -25,12 +25,13 @@ Since the game has no height changes applied to it and it's using a free movemen
 └📄Path.cs
 └📄PathRequestManager.cs
 ```
-# :wrench: Structure
-For the enemy:
+
+# :wrench: In-Game Structure
+Enemy object:
 - `Unit.cs`
-For the "navmesh" object:
+A* grid object:
+- `PathGrid.cs`
 - `PathFinding.cs`
-- `Path.cs`
 - `PathRequestManager.cs`
 
 # :gear: Functionality
@@ -43,17 +44,18 @@ The pathfinding grid is a matrix of nodes that contains:
 - x and y coords from the grid
 ## Path Grid
 Assignable values:
-- `LayerMask unwalkableMask;`
-- `Vector2 gridWorldSize;`
-- `float nodeRadius;`
-- `float unwalkablePadding;` (used to make sure enemies don't get stuck by walking in the corners of the obstacles)
+- `unwalkableMask`
+- `gridWorldSize`: x & y size *(in units)* of the grid
+- `nodeRadius`
+- `unwalkablePadding`: used to make sure enemies don't get stuck by walking in the corners of the obstacles
 
 Sets the grid x and y count to by dividing the world size by the node diameter.
 ```cs
 void Start() {...}
 ```
-First it creates a grid with the x and y count defined on `Start()`.
+First it creates a matrix of `PathNode` with the x and y count defined on `Start()`.
 Does a `unwalkableMask` sphere collision check with `nodeRadius` + `unwalkablePadding` radius on each world position and creates a `PathNode` with the unwalkable flag if it collides.
+The grid is generated a __single time__ after the rooms are generated and does not update.
 ```cs
 void CreateGrid() {...}
 ```
@@ -68,7 +70,9 @@ Assignable values:
 Coroutine
 > 1. Waits `minPathUpdateTime` seconds
 > 2. Sends a path request to `PathRequestManager`
-> 3. Follows the path received
+> 3. `PathRequestManager` further calls `PathFinding` in a seperate cpu thread to improve performance
+> 4. `PathFinding` returns a callback with `pathFound` success flag and a `Path`
+> 3. Follows the new received path
 
 </details>
 

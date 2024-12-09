@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85e2b07c612ac0b438c560b168b17e15, type: 3}
+  m_Name: SteelCrossbow
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: SteelCrossbow
+  <AnimatorController>k__BackingField: {fileID: 9100000, guid: 9aa8c651014f0a04faa779d7dd4ead9b,
+    type: 2}
+  <WeaponSprite>k__BackingField: {fileID: 0}
+  <WeaponPrefab>k__BackingField: {fileID: 0}
+  <ComponentDatas>k__BackingField:
+  - rid: 8663771510183297037
+  - rid: 8663771554814361600
+  - rid: 5048026515087294464
+  references:
+    version: 2
+    RefIds:
+    - rid: 5048026515087294464
+      type: {class: ChargeStatusData, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 8663771510183297037
+      type: {class: InputHoldData, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 8663771554814361600
+      type: {class: ProjectileSpawnerData, ns: , asm: Assembly-CSharp}
+      data:
+        <AttackData>k__BackingField:
+          <Projectile>k__BackingField: {fileID: 6360016598369960540, guid: 8f0cd8ac6756a0241b9c39be0e62d0a9,
+            type: 3}
+        <Speed>k__BackingField: 8
+        <Damage>k__BackingField: 5
+        <DetectableLayers>k__BackingField:
+          serializedVersion: 2
+          m_Bits: 1280

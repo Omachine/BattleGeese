@@ -102,7 +102,7 @@ Coroutine
   
 # State Machine Overview
 
-Project made by [Gonçalo Moreira](https://github.com/Omachine).
+Project made by [Gonçalo Moreira Nº 25965](https://github.com/Omachine).
 
   For this project the use of the State machine was made to make debugging easier, improve readability and for it's reusable logic.
   Can be used in traps where they worked in a sequence of states or change depending on the enviroment.

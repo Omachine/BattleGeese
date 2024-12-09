@@ -25,17 +25,22 @@ Since the game has no height changes applied to it and it's using a free movemen
 └📄Path.cs
 └📄PathRequestManager.cs
 ```
+# :wrench: Structure
+For the enemy:
+- `Unit.cs`
+For the "navmesh" object:
+- `PathFinding.cs`
+- `Path.cs`
+- `PathRequestManager.cs`
+
 # :gear: Functionality
-
 ## Path Node
-
 The pathfinding grid is a matrix of nodes that contains:
 - If it's walkable
 - World position
 - G, H and F costs
 - Their parent
 - x and y coords from the grid
-
 ## Path Grid
 Assignable values:
 - `LayerMask unwalkableMask;`
@@ -47,13 +52,23 @@ Sets the grid x and y count to by dividing the world size by the node diameter.
 ```cs
 void Start() {...}
 ```
-
 First it creates a grid with the x and y count defined on `Start()`.
-Does a sphere collision check with `nodeRadius` + `unwalkablePadding` on each world position and creates a `PathNode` with the unwalkable flag if so.
-
+Does a `unwalkableMask` sphere collision check with `nodeRadius` + `unwalkablePadding` radius on each world position and creates a `PathNode` with the unwalkable flag if it collides.
 ```cs
 void CreateGrid() {...}
 ```
+## Unit
+- `minPathUpdateTime`
+Assignable values:
+- `target`
+- `speed`
+- `turnDst`
+- `turnSpeed`
+
+Coroutine
+> 1. Waits `minPathUpdateTime` seconds
+> 2. Sends a path request to `PathRequestManager`
+> 3. Follows the path received
 
 </details>
 

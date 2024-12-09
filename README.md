@@ -196,6 +196,101 @@ stateMachine.ChangeState(stateMachine.ActiveState);
 ```
 </details>
 
+<details>
+  <summary>Behaviour Tree</summary>
+
+  # Behaviour Tree
+
+Project made by [José Ferreira](https://github.com/Berna-97).
+
+The Behaviour Tree was made out of the necessity of having dynamic and interesting enemies. Enemies are similar, so they re-use the same behaviours, making this a more pratical method than a state machine.
+It is made out of Nodes, that switch in the Tree through Sequences and Selectors, and each enemy has its own Tree.
+
+# :open_file_folder: Scripts
+```
+📂BehaviourTree/
+└📄Node.cs
+└📄Selector.cs
+└📄Sequence.cs
+└📄Tree.cs
+///////////
+└📄AppleBT.cs
+└📄BrocolliBT.cs
+└📄CarotBT.cs
+└📄TaskCheckCollision.cs
+└📄TaskAttack.cs
+└📄TastGoToTarget.cs
+└ ...
+```
+
+## The way it works
+
+Each enemy has a Tree associated with it, with Sequences and Selectors.
+
+### Sequence
+
+Sequences perform tasks in order, with each one returning either "Success", "Failure", or "Running".
+  - If "Failure" is returned, the entire sequence fails and skips the rest of the tasks.
+  - If "Success" is returned, the for cicle continues, and the next task is processed.
+  - If "Running" is returned, the task is processed again.
+  - If every task succeds, the sequence returns "Success"
+    
+```
+            for (int i = index; i < children.Count; i++)
+            {
+                switch (children[i].Evaluate())
+                {
+                    case NodeState.FAILURE:
+                        index = 0;
+                        state = NodeState.FAILURE;
+                        return state;
+                    case NodeState.SUCCESS:
+                        continue;
+                    case NodeState.RUNNING:
+                        index = i;
+                        return NodeState.RUNNING;
+                        // anyChildIsRunning = true;
+                    default:
+                        state = NodeState.SUCCESS;
+                        return state;
+                }
+            }
+            index = 0;
+            state = NodeState.SUCCESS;
+            return state;
+```
+### Selector
+
+Selectors are similar to Sequences, but with a few differences:
+  - "Failure" does not stop the selector, it just goes to the next task.
+  - "Success" stops the selector.
+  - If all tasks fail, the selector returns "Failure".
+
+ ```
+            for (int i = index; i < children.Count; i++)
+            {
+                switch (children[i].Evaluate())
+                {
+                    case NodeState.FAILURE:
+                        continue;
+                    case NodeState.SUCCESS:
+                        index = 0;
+                        state = NodeState.SUCCESS;
+                        return state;
+                    case NodeState.RUNNING:
+                        state = NodeState.RUNNING;
+                        return state;
+                    default:
+                        continue;
+                }
+            }
+            index = 0;
+            state = NodeState.FAILURE;
+            return state;
+```
+
+</details>
+
 ## Bibliographic References
 
 [Genshin Impact Movement in Unity | Full Video - Movement System](https://youtu.be/kluTqsSUyN0)

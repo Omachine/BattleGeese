@@ -18,7 +18,7 @@ The player goes through the levels aquiring weapons to fend for themselves and c
 ⬜⬜⬜🟥⬜⬛🏁
 🟥🟥⬜⬜⬜🟥🟥
 ```
-Project done by [Francisco Oliveira](https://github.com/FranciscoOliveira7).
+Project done by [Francisco Oliveira Nº25979](https://github.com/FranciscoOliveira7).
 
 In this project I created a pathfinding system for the Battle Geese game.
 Since the game has no height changes applied to it and it's using a free movement system, I made a 2 dimensional, matrix shaped grid for a pathfinding system.
